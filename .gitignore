@@ -8,3 +8,5 @@ flask/bin
 flask/local
 flask/lib
 flask/include
+
+riot_front/components
