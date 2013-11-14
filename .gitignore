@@ -1,1 +1,10 @@
+syntax: glob
+
 *~
+*.pyc
+.tmp
+
+flask/bin
+flask/local
+flask/lib
+flask/include
