@@ -77,6 +77,7 @@ if app.config['DEBUG']:
         #'/styles/': os.path.join(app.config.get("RIOT_ROOT"), '.tmp/styles'),
         '/': os.path.join(app.config.get("RIOT_ROOT"), 'app'),
         '/bower_components/': os.path.join(app.config.get("RIOT_ROOT"), 'components'),
+        '/riot/': os.path.join(app.config.get("RIOT_ROOT"), 'riot'),
         '/ext/': os.path.join(app.config.get("RIOT_ROOT"), 'ext')
     })
 
