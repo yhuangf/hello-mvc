@@ -44,9 +44,10 @@ else:
 
 # This route sets up a catchall. This is needed for HTML5 Url History
 @app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
+# @app.route('/<path:path>')
 @modern_browser_required
 def index(path):
+
     response = render_template("index.html")
 
     browser = request.user_agent.browser
@@ -68,12 +69,14 @@ def index(path):
 
 
 # Serve static files that are usually served with production web server
-#if app.config['DEBUG']:
-#    from werkzeug import SharedDataMiddleware
-#    import os
-#    app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
-#        '/img/': os.path.join(app.config.get("MANHATTAN_ROOT"), 'app/images'),
-#        '/styles/': os.path.join(app.config.get("MANHATTAN_ROOT"), '.tmp/styles'),
-#        '/': os.path.join(app.config.get("MANHATTAN_ROOT"), 'app')
-#    })
+if app.config['DEBUG']:
+    from werkzeug import SharedDataMiddleware
+    import os
+    app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
+        #'/img/': os.path.join(app.config.get("RIOT_ROOT"), 'app/images'),
+        #'/styles/': os.path.join(app.config.get("RIOT_ROOT"), '.tmp/styles'),
+        '/': os.path.join(app.config.get("RIOT_ROOT"), 'app'),
+        '/bower_components/': os.path.join(app.config.get("RIOT_ROOT"), 'components'),
+        '/ext/': os.path.join(app.config.get("RIOT_ROOT"), 'ext')
+    })
 
