@@ -7,7 +7,7 @@ function DB(key) {
       return JSON.parse(store[key] || '{}')
     },
 
-    put: function(data) {
+    ut: function(data) {
       store[key] = JSON.stringify(data)
     }
   }

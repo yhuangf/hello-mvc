@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Simple mvc example follow MVP pattern</title>
+  </head>
+  <script type="html/todo">
+  <li id="{id}">
+    <div class="view">
+      <label>{name}</label>
+      <button class="destroy"/>
+    </div>
+    <input class="edit" value="{name}">
+  </li>
+  </script>
+  
+  <body>
+    <section id="simpleapp">
+      <section id="main">
+        <ul id="simple-list"></ul>
+      </section>
+      <footer id="footer">
+        <span id="simple-count"></span>
+        <ul id="filters">
+          <li>
+            <a class="selected" href="#/">All</a>
+          </li>
+          <li>
+            <a class="#/normal">Normal</a>
+          </li>
+          <li>
+            <a class="#/abnormal">Abnormal</a>
+          </li>
+        </ul>
+      </footer>
+    </section>
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="riot/jquery.riot.js"></script>
+    <script src="ext/render.js"></script>
+    <script src="store.js"></script>
+    <script src="models/simple_api.js"></script>
+    <script src="presentors/simple_app.js"></script>
+  </body>
+</html>
