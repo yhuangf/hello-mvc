@@ -4,21 +4,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Simple mvc example follow MVP pattern</title>
+    <link rel="stylesheet" href="/bower_components/todomvc-common/base.css">
   </head>
-  <script type="html/todo">
+  <script type="html/simple">
   <li id="{id}">
     <div class="view">
+      <input class="toggle" type="checkbox">
       <label>{name}</label>
       <button class="destroy"/>
     </div>
-    <input class="edit" value="{name}">
+    <div class="detail">
+      <label>{name}</label>
+    </div>
   </li>
   </script>
   
   <body>
-    <section id="simpleapp">
+    <section id="todoapp">
+      <header id="header">
+        <h1>items</h1>
+      </header>
       <section id="main">
-        <ul id="simple-list"></ul>
+        <input id="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as checked</label>
+        <ul id="todo-list"></ul>
+        <div>
+          <p class="empty">No records</p>
+        </div>
       </section>
       <footer id="footer">
         <span id="simple-count"></span>
@@ -27,14 +39,21 @@
             <a class="selected" href="#/">All</a>
           </li>
           <li>
-            <a class="#/normal">Normal</a>
+            <a href="#/normal">Normal</a>
           </li>
           <li>
-            <a class="#/abnormal">Abnormal</a>
+            <a href="#/abnormal">Abnormal</a>
           </li>
         </ul>
+        <button id="hide-completed"></button>
+        <button id="show-completed"></button>
       </footer>
     </section>
+    <footer id=info>
+      <p>Double-click to show detail of an item</p>
+      <p>By <a href="ethan@awesense.com">Ethan &bull; Huang</a></p>
+      <p>MVP using <a href="https://moot.it/blog">riot<a/></p>
+    </footer>
 
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="riot/jquery.riot.js"></script>

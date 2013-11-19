@@ -48,7 +48,7 @@ else:
 @modern_browser_required
 def index(path):
 
-    response = render_template("index.html")
+    response = render_template("simple.html")
 
     browser = request.user_agent.browser
     major_version = request.user_agent.version and int(request.user_agent.version.split('.')[0])
