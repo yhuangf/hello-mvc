@@ -3,23 +3,10 @@
 function Simple(db, url) {
   // local cached content
   db = db || DB("simple-riot");
-  var items = self.getdata();
-
   var self = $.observable(this);
   
-  self.url = url || 'http://0.0.0.0:5000/api/bills'
-
-  self.getdata() {
-    // load remotely
-    items = db.get()
-    $.ajax({
-      url: self.url,
-      context: self,
-      success:  function(data) { 
-        $.each(data, self.add(item))
-      }
-    });
-  }
+  
+  self.url = url || 'http://0.0.0.0:5000/api/bills';
 
   /* model events */
   self.add = function(name){
@@ -27,6 +14,22 @@ function Simple(db, url) {
                 name: name}
     items[item.id] = item;
     self.trigger("add", item)
+  }
+  
+  var items = getdata();
+
+  function getdata() {
+    // load remotely
+    items = db.get();
+    self.add("item1");
+    $.ajax({
+      url: self.url,
+      context: self,
+      success:  function(data) { 
+        $.each(data, self.add(item))
+      }
+    });
+    return items
   }
   
   self.remove = function(filter) {

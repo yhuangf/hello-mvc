@@ -1,5 +1,4 @@
 
-
 /* The presenter */
 
 (function() { 'user strict';
@@ -9,10 +8,18 @@
   // HTML for single item
   var template = $("[type='html/todo']").html(),
     root = $("#todo-list"),
-    nav = $("#filters a")
+    nav = $("#filters a");
  
   /* user events */ 
+  $("#toggle-all").click(function() {
+    $("li", root).each(function() {
+      simple.toggle(this.id)
+    })
+  })
 
+  $("#hide-completed").click(function(){
+    todo.remove("completed");
+  })
 
   /* model events */
   
@@ -26,7 +33,24 @@
 
   }).on("add remove toggle", counts)
 
+  /* Routing */
 
+  nav.click(function(){
+    return $.route($(this).attr("href"))
+  })
+  
+  $.rount(function(){
+  
+    // clear list and add new ones
+    root.empty() && $.each(todo.items(hash.slice(2)), add)
+
+    // selected class
+    nav.removeClass("selected").filter(
+      "[href='" + hash + "']").addClass("selected");  
+
+    // update counts
+    counts()
+  })
 
   /* Private functions */
 
@@ -72,10 +96,20 @@
     
     // Destroy detailing info
     $(".destroy", el).click(function() {
-      detail.focus
+      el.removeClass("detailing")
     })
-    
+   
+    function counts() {
+      var active = simple.items("active").length,
+        done = simple.items("completed").length;
 
+      $("#simple-count").html("<strong>" + 
+          active + "</strong> item" + (active == 1 ? "" : "s") +
+          " left")
+      $("#clear-completed").toggle(done > 0).text("Clear completed (" +
+          done + ")")
+      $("#footer").toggle(active + done > 0)
+    }
   }
 
-})
+})()
