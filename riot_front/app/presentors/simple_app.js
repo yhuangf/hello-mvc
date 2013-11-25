@@ -6,8 +6,8 @@
   window.simple = new Simple();
 
   // HTML for single item
-  var template = $("[type='html/todo']").html(),
-    root = $("#todo-list"),
+  var template = $("[type='html/simple']").html(),
+    root = $("#simple-list"),
     nav = $("#filters a");
  
   /* user events */ 
@@ -39,10 +39,10 @@
     return $.route($(this).attr("href"))
   })
   
-  $.rount(function(){
+  $.route(function(hash){
   
     // clear list and add new ones
-    root.empty() && $.each(todo.items(hash.slice(2)), add)
+    root.empty() && $.each(simple.items(hash.slice(2)), add)
 
     // selected class
     nav.removeClass("selected").filter(
@@ -89,7 +89,7 @@
     })
 
     // Label double click event
-    $("label", el).dbclick(function() {
+    $("label", el).dblclick(function() {
       el.addClass("detailing");
       detail.focus()[0].select()
     })
@@ -98,18 +98,17 @@
     $(".destroy", el).click(function() {
       el.removeClass("detailing")
     })
-   
-    function counts() {
-      var active = simple.items("active").length,
-        done = simple.items("completed").length;
+  }   
+  function counts() {
+    var active = simple.items("active").length,
+      done = simple.items("completed").length;
 
-      $("#simple-count").html("<strong>" + 
-          active + "</strong> item" + (active == 1 ? "" : "s") +
-          " left")
-      $("#clear-completed").toggle(done > 0).text("Clear completed (" +
-          done + ")")
-      $("#footer").toggle(active + done > 0)
-    }
+    $("#simple-count").html("<strong>" + 
+        active + "</strong> item" + (active == 1 ? "" : "s") +
+        " left")
+    $("#clear-completed").toggle(done > 0).text("Clear completed (" +
+        done + ")")
+    $("#footer").toggle(active + done > 0)
   }
 
 })()
